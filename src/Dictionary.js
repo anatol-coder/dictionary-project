@@ -9,8 +9,11 @@ export default function Dictionary(props) {
   let [loaded, setLoaded] = useState(false);
 
   function handleCall(response) {
-    console.log(response);
     setResults(response.data);
+  }
+
+  function handlePexelsResponse(response) {
+    console.log(response.data);
   }
 
   function load() {
@@ -22,6 +25,15 @@ export default function Dictionary(props) {
     let apiKey = "5b407712f11dct93a10f4f1dc8e2394o";
     let apiUrl = `https://api.shecodes.io/dictionary/v1/define?word=${keyword}&key=${apiKey}`;
     axios.get(apiUrl).then(handleCall);
+
+    let pexelsApiKey =
+      "vNAXdG3jksl9MDt7vGQTNYw4PYQdeDaIx9QXAni2bV1WD6U4qncJvkpA";
+    let pexelsApiUrl = `https://api.pexels.com/v1/search?query=${keyword}&per_page=1`;
+    axios
+      .get(pexelsApiUrl, {
+        headers: { Authorization: `Bearer ${pexelsApiKey}` },
+      })
+      .then(handlePexelsResponse);
   }
 
   function handleSubmit(event) {
