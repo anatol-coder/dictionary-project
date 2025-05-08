@@ -1,5 +1,6 @@
 import React from "react";
+import "./Phonetic.css";
 
 export default function Phonetic(props) {
-  return <span>/ {props.phonetic} / </span>;
+  return <span className="Phonetic">/ {props.phonetic} / </span>;
 }
