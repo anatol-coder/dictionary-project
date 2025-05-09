@@ -2,18 +2,20 @@ import React, { useState } from "react";
 import axios from "axios";
 import Results from "./Results";
 import "./Dictionary.css";
+import Photos from "./Photos";
 
 export default function Dictionary(props) {
   let [keyword, setKeyword] = useState(props.defaultKeyWord);
   let [results, setResults] = useState(null);
   let [loaded, setLoaded] = useState(false);
+  let [photos, setPhotos] = useState(null);
 
   function handleCall(response) {
     setResults(response.data);
   }
 
   function handlePexelsResponse(response) {
-    console.log(response.data);
+    setPhotos(response.data);
   }
 
   function load() {
@@ -30,10 +32,10 @@ export default function Dictionary(props) {
       "vNAXdG3jksl9MDt7vGQTNYw4PYQdeDaIx9QXAni2bV1WD6U4qncJvkpA";
     let pexelsApiUrl = `https://api.pexels.com/v1/search?query=${keyword}&per_page=1`;
     axios
-      .get(pexelsApiUrl, {
-        headers: { Authorization: `Bearer ${pexelsApiKey}` },
-      })
-      .then(handlePexelsResponse);
+      .get(`${pexelsApiUrl}`, { headers: { Authorization: `${pexelsApiKey}` } })
+      .then((response) => {
+        handlePexelsResponse(response);
+      });
   }
 
   function handleSubmit(event) {
@@ -64,6 +66,7 @@ export default function Dictionary(props) {
           </section>
 
           <Results results={results} />
+          <Photos photos={photos} />
         </div>
       </div>
     );
