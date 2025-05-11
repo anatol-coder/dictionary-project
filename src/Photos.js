@@ -1,4 +1,5 @@
 import React from "react";
+import "./Photos.css";
 
 export default function Photos(props) {
   if (props.photos) {
@@ -11,7 +12,7 @@ export default function Photos(props) {
                 <img
                   src={photo.src.landscape}
                   className="img-fluid"
-                  alt="man reading"
+                  alt={photo.alt}
                 />
               </div>
             );

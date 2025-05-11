@@ -15,8 +15,7 @@ export default function Dictionary(props) {
   }
 
   function handleImagesResponse(response) {
-    console.log(response.data);
-    setPhotos(response.data);
+    setPhotos(response.data.photos);
   }
 
   function load() {
@@ -29,7 +28,7 @@ export default function Dictionary(props) {
     let apiUrl = `https://api.shecodes.io/dictionary/v1/define?word=${keyword}&key=${apiKey}`;
     axios.get(apiUrl).then(handleCall);
 
-    let imagesApiUrl = `https://api.shecodes.io/images/v1/search?query=book&key=${apiKey}`;
+    let imagesApiUrl = `https://api.shecodes.io/images/v1/search?query=${keyword}&key=${apiKey}`;
     axios.get(imagesApiUrl).then(handleImagesResponse);
   }
 
