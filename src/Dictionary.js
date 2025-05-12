@@ -11,7 +11,8 @@ export default function Dictionary(props) {
   let [photos, setPhotos] = useState(null);
 
   function handleCall(response) {
-    setResults(response.data);
+    console.log(response.data[0].phonetics);
+    setResults(response.data[0]);
   }
   function handleImagesResponse(response) {
     setPhotos(response.data.photos);
@@ -23,10 +24,12 @@ export default function Dictionary(props) {
   }
 
   function search() {
-    let apiKey = "5b407712f11dct93a10f4f1dc8e2394o";
-    let apiUrl = `https://api.shecodes.io/dictionary/v1/define?word=${keyword}&key=${apiKey}`;
+    // documentation: https://dictionaryapi.dev/e
+    let apiUrl = `https://api.dictionaryapi.dev/api/v2/entries/en_US/${keyword}`;
     axios.get(apiUrl).then(handleCall);
 
+    //documentation: https://www.shecodes.io/learn/apis/dictionary
+    let apiKey = "5b407712f11dct93a10f4f1dc8e2394o";
     let imagesApiUrl = `https://api.shecodes.io/images/v1/search?query=${keyword}&key=${apiKey}`;
     axios.get(imagesApiUrl).then(handleImagesResponse);
   }
@@ -35,8 +38,6 @@ export default function Dictionary(props) {
     event.preventDefault();
     search();
   }
-
-  //documentation: https://www.shecodes.io/learn/apis/dictionary
 
   function handleKeywordChange(event) {
     setKeyword(event.target.value);

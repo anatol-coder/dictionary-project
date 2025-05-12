@@ -3,8 +3,11 @@ import "./Phonetic.css";
 
 export default function Phonetic(props) {
   return (
-    <span className="Phonetic">
-      {""} / {props.phonetic} /{" "}
-    </span>
+    <div className="Phonetic">
+      <a href={props.phonetic.audio} target="_blank" rel="noreferrer">
+        <button className="audioFileButton">Listen</button>
+      </a>
+      <span className="text">{props.phonetic.text}</span>
+    </div>
   );
 }
