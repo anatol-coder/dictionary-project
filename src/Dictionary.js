@@ -3,7 +3,6 @@ import axios from "axios";
 import Results from "./Results";
 import "./Dictionary.css";
 import Photos from "./Photos";
-import Phonetic from "./Phonetic";
 
 export default function Dictionary(props) {
   let [keyword, setKeyword] = useState(props.defaultKeyWord);
@@ -68,7 +67,7 @@ export default function Dictionary(props) {
             <h5>suggested words: sunset, plant, vacation, tennis...</h5>
           </section>
 
-          <Results results={results} />
+          <Results results={results} audio={audio} />
 
           <Photos photos={photos} />
         </div>
