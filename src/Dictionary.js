@@ -11,7 +11,7 @@ export default function Dictionary(props) {
   let [photos, setPhotos] = useState(null);
 
   function handleCall(response) {
-    console.log(response.data[0].phonetics);
+    console.log(response.data[0]);
     setResults(response.data[0]);
   }
   function handleImagesResponse(response) {
