@@ -9,18 +9,12 @@ export default function Dictionary(props) {
   let [results, setResults] = useState(null);
   let [loaded, setLoaded] = useState(false);
   let [photos, setPhotos] = useState(null);
-  let [audio, setAudio] = useState(null);
 
   function handleCall(response) {
     setResults(response.data);
   }
   function handleImagesResponse(response) {
     setPhotos(response.data.photos);
-  }
-
-  function handleAudioCall(response) {
-    console.log(response.phonetic);
-    setAudio(response.phonetic);
   }
 
   function load() {
@@ -35,9 +29,6 @@ export default function Dictionary(props) {
 
     let imagesApiUrl = `https://api.shecodes.io/images/v1/search?query=${keyword}&key=${apiKey}`;
     axios.get(imagesApiUrl).then(handleImagesResponse);
-
-    let audioApiUrl = `https://api.dictionaryapi.dev/api/v2/entries/en/${keyword}`;
-    axios.get(audioApiUrl).then(handleAudioCall);
   }
 
   function handleSubmit(event) {
@@ -67,7 +58,7 @@ export default function Dictionary(props) {
             <h5>suggested words: sunset, plant, vacation, tennis...</h5>
           </section>
 
-          <Results results={results} audio={audio} />
+          <Results results={results} />
 
           <Photos photos={photos} />
         </div>
