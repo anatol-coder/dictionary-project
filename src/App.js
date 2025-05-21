@@ -12,6 +12,18 @@ export default function App() {
         <Dictionary defaultKeyWord={"sunrise"} />
         <footer className="App-footer">
           <small> Coded by SheCodes</small>
+          <br />
+          <small>
+            Project is{" "}
+            <a
+              href="https://github.com/anatol-coder/dictionary-project"
+              target="_blank"
+              rel="noreferrer"
+            >
+              open-source
+            </a>{" "}
+            and available on GitHub.
+          </small>
         </footer>
       </div>
     </div>
